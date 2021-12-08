@@ -61,14 +61,17 @@ public class MainController implements Initializable {
             }
         };
 
-        mainWindow.getChildren().removeAll(library);
+        //First visit
+        mainWindow.getChildren().removeAll(library, army);
 
+
+        //Go to library application
         btnlibrary.setOnMouseClicked(e -> {
             displayForm.handle(e);
             mainWindow.getChildren().add(library);
         });
 
-
+        //Go to army application
         btnarmy.setOnMouseClicked(e -> {
             displayForm.handle(e);
             mainWindow.getChildren().add(army);
