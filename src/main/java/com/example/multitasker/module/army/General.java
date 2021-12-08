@@ -25,7 +25,7 @@ public class General {
 
     /*
     public int getNbSoldier(){
-
+        //Check number of childsItem in treeView
         return number;
     }
     Define number of soldiers of this General

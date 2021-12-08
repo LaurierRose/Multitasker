@@ -1,6 +1,7 @@
 package com.example.multitasker.controller;
 
 import com.example.multitasker.module.Library;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,9 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
 
 public class MainController implements Initializable {
 
@@ -49,11 +53,14 @@ public class MainController implements Initializable {
     @FXML
     private VBox VboxIMC;
 
+    @FXML
+    private MenuItem menuQuit;
 
+    @FXML
+    private MenuItem menuClose;
 
-
-
-
+    @FXML
+    private GridPane gridmenu;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +74,21 @@ public class MainController implements Initializable {
                 }
             }
         };
+
+
+
+        //Menu actions
+
+        menuQuit.setOnAction(e->{
+            Platform.exit();
+        });
+
+        menuClose.setOnAction(action->{
+            ObservableList child = mainWindow.getChildren();
+            mainWindow.getChildren().removeAll(child);
+            mainWindow.getChildren().add(gridmenu);
+        });
+
 
         //First visit
         mainWindow.getChildren().removeAll(library, army, VboxIMC);

@@ -13,4 +13,9 @@
       <module name="Multitasker" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Multitasker" options="--add-exports javafx.graphics/com.sun.javafx.application=com.example.multitasker" />
+    </option>
+  </component>
 </project>
