@@ -10,6 +10,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +39,10 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem miquit;
 
+    @FXML
+    private VBox library;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,24 +50,28 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> displayForm = new EventHandler<>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (!containerCentral.getChildren().isEmpty()) {
-                    ObservableList child = containerCentral.getChildren();
-                    containerCentral.getChildren().removeAll(child);
+                if (!mainWindow.getChildren().isEmpty()) {
+                    ObservableList child = mainWindow.getChildren();
+                    mainWindow.getChildren().removeAll(child);
                 }
             }
         };
 
-        containerCentral.getChildren().removeAll(library);
+        mainWindow.getChildren().removeAll(library);
 
-        btnVoiture.setOnMouseClicked(e -> {
+        btnlibrary.setOnMouseClicked(e -> {
             displayForm.handle(e);
-            containerCentral.getChildren().add(formvoiture);
+            mainWindow.getChildren().add(library);
         });
 
-        btnVelo.setOnMouseClicked(e -> {
+        /*
+
+        btnIMC.setOnMouseClicked(e -> {
             displayForm.handle(e);
-            containerCentral.getChildren().add(formvelo);
+            mainWindow.getChildren().add(imc);
         });
+         */
     }
+}
 
 
