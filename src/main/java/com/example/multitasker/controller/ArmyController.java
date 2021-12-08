@@ -15,14 +15,14 @@ public class ArmyController implements Initializable {
     private Button btncreate;
 
     @FXML
-    private TreeView<?> tvarmy;
+    private TreeView<String> tvarmy;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btncreate.setOnMouseClicked(action->{
             //Create root item
-            String armyName =
-            TreeItem rootItem = new TreeItem<>(armyName);
+            String armyName = "Army";
+            TreeItem<String> rootItem = new TreeItem<>(armyName);
             tvarmy.setRoot(rootItem);
         });
 
