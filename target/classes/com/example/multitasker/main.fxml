@@ -45,7 +45,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.MainController">
   <children>
     <MenuBar fx:id="mbmenuBar" VBox.vgrow="NEVER">
       <menus>
@@ -119,8 +119,8 @@
                   </Button>
                </children>
             </GridPane>
+            <fx:include fx:id="library" source="library.fxml" />
       </children>
     </AnchorPane>
-      <fx:include source="library.fxml" />
   </children>
 </VBox>
