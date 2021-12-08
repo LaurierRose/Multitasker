@@ -2,12 +2,14 @@ package com.example.multitasker.controller;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.PropertySheet;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,6 +90,7 @@ public class ArmyController implements Initializable {
         tvarmy.setContextMenu(addgeneral);
         tvarmy.setEditable(true);
 
+        //Create menu on general
         MenuItem addMenuItem1 = new MenuItem("Add General");
         MenuItem addMenuItem2 = new MenuItem("Modify General");
         addgeneral.getItems().add(addMenuItem1);
@@ -100,8 +103,7 @@ public class ArmyController implements Initializable {
             formPane.getChildren().add(generalForm);
         });
 
-
-
+        
 
 
 
