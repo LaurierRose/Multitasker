@@ -46,6 +46,13 @@ public class MainController implements Initializable {
     @FXML
     private Pane army;
 
+    @FXML
+    private VBox VboxIMC;
+
+
+
+
+
 
 
     @Override
@@ -62,7 +69,7 @@ public class MainController implements Initializable {
         };
 
         //First visit
-        mainWindow.getChildren().removeAll(library, army);
+        mainWindow.getChildren().removeAll(library, army, VboxIMC);
 
 
         //Go to library application
@@ -77,13 +84,10 @@ public class MainController implements Initializable {
             mainWindow.getChildren().add(army);
         });
 
-        /*
-
         btnIMC.setOnMouseClicked(e -> {
             displayForm.handle(e);
-            mainWindow.getChildren().add(imc);
+            mainWindow.getChildren().add(VboxIMC);
         });
-         */
 
     }
 }

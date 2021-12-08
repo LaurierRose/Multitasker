@@ -121,6 +121,7 @@
             </GridPane>
             <fx:include fx:id="library" source="library.fxml" />
             <fx:include fx:id="army" source="army.fxml" />
+            <fx:include fx:id="VboxIMC" source="imc.fxml" />
       </children>
     </AnchorPane>
   </children>

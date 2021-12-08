@@ -22,12 +22,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="306.0">
                            <children>
-                              <Label fx:id="lblCM" text="SIZE in CM : ">
+                              <Label fx:id="lblCM" text="Size in CM : ">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblPOID" text="POUND in KG: ">
+                              <Label fx:id="lblPOID" text="Pound in KG: ">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
