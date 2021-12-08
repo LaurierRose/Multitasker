@@ -120,6 +120,7 @@
                </children>
             </GridPane>
             <fx:include fx:id="library" source="library.fxml" />
+            <fx:include fx:id="army" source="army.fxml" />
       </children>
     </AnchorPane>
   </children>

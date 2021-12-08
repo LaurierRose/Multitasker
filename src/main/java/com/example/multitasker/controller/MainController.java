@@ -11,6 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -42,6 +43,9 @@ public class MainController implements Initializable {
     @FXML
     private VBox library;
 
+    @FXML
+    private Pane army;
+
 
 
     @Override
@@ -57,11 +61,20 @@ public class MainController implements Initializable {
             }
         };
 
-        mainWindow.getChildren().removeAll(library);
+        //First visit
+        mainWindow.getChildren().removeAll(library, army);
 
+
+        //Go to library application
         btnlibrary.setOnMouseClicked(e -> {
             displayForm.handle(e);
             mainWindow.getChildren().add(library);
+        });
+
+        //Go to army application
+        btnarmy.setOnMouseClicked(e -> {
+            displayForm.handle(e);
+            mainWindow.getChildren().add(army);
         });
 
         /*
@@ -71,6 +84,7 @@ public class MainController implements Initializable {
             mainWindow.getChildren().add(imc);
         });
          */
+
     }
 }
 
