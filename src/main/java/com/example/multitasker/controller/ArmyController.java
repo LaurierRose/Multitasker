@@ -1,15 +1,15 @@
 package com.example.multitasker.controller;
 
+import com.example.multitasker.module.army.GeneralItem;
+import com.example.multitasker.module.army.TextFieldTreeCellImpl;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import org.controlsfx.control.PropertySheet;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -79,31 +79,16 @@ public class ArmyController implements Initializable {
         formPane.getChildren().removeAll(soldierForm, generalForm);
 
 
-
-        final ContextMenu addsoldier = new ContextMenu();
-        final ContextMenu addgeneral = new ContextMenu();
-
         //Initialize root item
         TreeItem<String> rootItem = new TreeItem<>("Army");
         tvarmy.setRoot(rootItem);
         rootItem.setExpanded(true);
-        tvarmy.setContextMenu(addgeneral);
         tvarmy.setEditable(true);
+        tvarmy.setCellFactory((TreeView<String> p) ->
+                new TextFieldTreeCellImpl());
 
-        //Create menu on general
-        MenuItem addMenuItem1 = new MenuItem("Add General");
-        MenuItem addMenuItem2 = new MenuItem("Modify General");
-        addgeneral.getItems().add(addMenuItem1);
-        addgeneral.getItems().add(addMenuItem2);
-        addMenuItem1.setOnAction((ActionEvent t) -> {
-            TreeItem<String> newGeneral = new TreeItem<>("General");
-            rootItem.getChildren().add(newGeneral);
-        });
-        addMenuItem2.setOnAction((ActionEvent t) -> {
-            formPane.getChildren().add(generalForm);
-        });
-
-        
+        GeneralItem newItem = new GeneralItem("De Gaulle");
+        rootItem.getChildren().add(newItem);
 
 
 

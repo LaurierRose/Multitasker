@@ -1,10 +1,12 @@
 package com.example.multitasker.module.army;
 
-public class General {
+import javafx.scene.control.TreeItem;
+
+public class GeneralItem extends TreeItem {
     String name;
     int nbSoldiers;
 
-    public General(String name) {
+    public GeneralItem(String name) {
         this.name = name;
     }
 

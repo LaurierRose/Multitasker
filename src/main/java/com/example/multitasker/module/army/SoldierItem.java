@@ -1,15 +1,12 @@
 package com.example.multitasker.module.army;
 
-public class Soldier extends General{
+public class SoldierItem extends GeneralItem {
     String rank;
     int PV;
     int ID;
 
-    public Soldier(String name, int newID, String newrank, int newPV) {
+    public SoldierItem(String name) {
         super(name);
-        this.ID = newID;
-        this.rank = newrank;
-        this.PV = newPV;
     }
 
     //getter
