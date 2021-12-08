@@ -121,5 +121,6 @@
             </GridPane>
       </children>
     </AnchorPane>
+      <fx:include source="library.fxml" />
   </children>
 </VBox>
