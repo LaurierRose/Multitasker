@@ -23,11 +23,11 @@ public class General {
         this.name = name;
     }
 
+    /*
     public int getNbSoldier(){
 
         return number;
     }
-    /*
     Define number of soldiers of this General
      */
 
