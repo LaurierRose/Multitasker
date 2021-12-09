@@ -1,6 +1,7 @@
 package com.example.multitasker.controller;
 
 import com.example.multitasker.module.army.GeneralItem;
+import com.example.multitasker.module.army.SoldierItem;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 
 import java.net.URL;
@@ -99,31 +99,58 @@ public class ArmyController implements Initializable {
     MenuItem addMenuItemG = new MenuItem("Add General");
     MenuItem addMenuItemS = new MenuItem("Add Soldier");
 
-    public void addGeneralMenu(TreeItem treeItem, MouseEvent event) {
+    public void addMenu(TreeItem treeItem, MouseEvent event, MenuItem submenu, ContextMenu menu, char test, Button btnadd, VBox form, String type, TextField txtfield) {
         Node node = event.getPickResult().getIntersectedNode();
-        addMenuG.getItems().add(addMenuItemG);
+        menu.getItems().add(submenu);
+        //Display menu position
         Bounds boundsInScreen = node.localToScreen(node.getBoundsInLocal());
-        addMenuG.show(node, boundsInScreen.getMaxX(), boundsInScreen.getMaxY());
-        addMenuItemG.setOnAction((ActionEvent t) -> {
-            formPane.getChildren().add(generalForm);
-            btnaddg.setOnMouseClicked(action->{
-                GeneralItem newGeneral = new GeneralItem(txtgeneralName.getText());
+        menu.show(node, boundsInScreen.getMaxX(), boundsInScreen.getMaxY());
+        //Action of menu
+        submenu.setOnAction((ActionEvent t) -> {
+            if(formPane.getChildren().isEmpty()){
+                formPane.getChildren().add(form);
+            }
+            btnadd.setOnMouseClicked(action -> {
+                GeneralItem newGeneral = new GeneralItem(txtfield.getText());
                 TreeItem newItem = new TreeItem<GeneralItem>(newGeneral);
                 treeItem.getChildren().add(newItem);
-                formPane.getChildren().remove(generalForm);
-                    }
-            );
+                newItem.setValue(type+ " " + newGeneral.toString());
+                formPane.getChildren().remove(form);
+            });
         });
+
     }
+
+
+
     //Event listener on treeview
     EventHandler<MouseEvent> mouseEventHandle = (MouseEvent event) -> {
         handleMouseClicked(event);
     };
-    //Action when click detected
+    //Actions when click detected
     private void handleMouseClicked(MouseEvent event) {
+        TreeItem<String> currentNode = tvarmy.getSelectionModel().getSelectedItem();
+        String itemValue = "";
+        try {
+            itemValue = currentNode.getValue();
+        } catch (Exception e){
+            System.err.println("Ho ho... ");
+        }
+        char test = itemValue.charAt(0);
         String name = (String) ((TreeItem<?>)tvarmy.getSelectionModel().getSelectedItem()).getValue();
         System.out.println("Item click: " + name);
-        addGeneralMenu(tvarmy.getSelectionModel().getSelectedItem(), event);
+        switch (test){
+            case 'Y':
+                addMenu(currentNode, event, addMenuItemG, addMenuG, test, btnaddg, generalForm, "General", txtgeneralName);
+                currentNode.setExpanded(true);
+                break;
+            case 'G':
+                addMenu(currentNode, event, addMenuItemS, addMenuS, test, btnadds, soldierForm, "Soldier", txtsoldierName);
+                currentNode.setExpanded(true);
+                break;
+            case'S':
+                break;
+        }
 
     }
 

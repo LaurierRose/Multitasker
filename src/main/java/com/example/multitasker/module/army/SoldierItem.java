@@ -2,10 +2,9 @@ package com.example.multitasker.module.army;
 
 public class SoldierItem extends GeneralItem {
     String rank;
-    int PV;
-    int ID;
+    String PV;
 
-    public SoldierItem(String name, String rank, int PV) {
+    public SoldierItem(String name, String rank, String PV) {
         super(name);
         this.rank = rank;
         this.PV = PV;
@@ -16,7 +15,7 @@ public class SoldierItem extends GeneralItem {
         return rank;
     }
 
-    public int getPV() {
+    public String getPV() {
         return PV;
     }
 
@@ -25,7 +24,7 @@ public class SoldierItem extends GeneralItem {
         this.rank = rank;
     }
 
-    public void setPV(int PV) {
+    public void setPV(String PV) {
         this.PV = PV;
     }
 
