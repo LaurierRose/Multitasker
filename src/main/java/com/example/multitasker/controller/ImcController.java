@@ -54,17 +54,17 @@ public class ImcController implements Initializable {
             if (imc < 18.5) {
                 infoRESULT.setText("You are underweight");
             }
-            if (imc >= 18.5 && imc <= 25) {
+            if (imc >= 18.5 && imc <= 24.9) {
                 infoRESULT.setText("You are normal");
             }
-            if (imc > 25 && imc <= 30) {
+            if (imc > 25 && imc <= 29.9) {
                 infoRESULT.setText("You are overweight");
             }
             if (imc > 30) {
                 infoRESULT.setText("You are obese");
             }
 
-            if (imc > 35 && imc <= 40) {
+            if (imc > 35 && imc <= 39.9) {
                 infoRESULT.setText("You are seriously obese");
             }
             if (imc > 40) {

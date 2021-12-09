@@ -27,12 +27,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="306.0">
                            <children>
-                              <Label fx:id="lblCM" text="Size in metters : ">
+                              <Label fx:id="lblCM" text="Size in meters : ">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblPOID" prefHeight="38.0" prefWidth="294.0" text="Pound in kilogrammes: ">
+                              <Label fx:id="lblPOID" prefHeight="38.0" prefWidth="294.0" text="Weight in kilograms">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -61,7 +61,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="BTN" mnemonicParsing="false" text="Calcul ">
+                  <Button fx:id="BTN" mnemonicParsing="false" text="Calculate">
                      <font>
                         <Font size="20.0" />
                      </font></Button>
