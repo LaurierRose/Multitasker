@@ -1,18 +1,18 @@
 package com.example.multitasker.module.army;
 
-import javafx.scene.control.TreeItem;
+import javafx.beans.property.SimpleStringProperty;
 
-public class GeneralItem extends TreeItem {
-    String name;
-    int nbSoldiers;
+public class GeneralItem{
+    private SimpleStringProperty name;
+    int nbSoldiers = 0;
 
     public GeneralItem(String name) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
 
     //Getter
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public int getNbSoldiers() {
@@ -21,8 +21,13 @@ public class GeneralItem extends TreeItem {
 
     //Setter
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String newname) {
+        name.set(newname);
+    }
+
+    @Override
+    public String toString()  {
+        return name.get();
     }
 
     /*

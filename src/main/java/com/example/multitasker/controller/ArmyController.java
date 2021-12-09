@@ -1,14 +1,16 @@
 package com.example.multitasker.controller;
 
 import com.example.multitasker.module.army.GeneralItem;
-import com.example.multitasker.module.army.TextFieldTreeCellImpl;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 
 import java.net.URL;
@@ -80,19 +82,56 @@ public class ArmyController implements Initializable {
 
 
         //Initialize root item
+
         TreeItem<String> rootItem = new TreeItem<>("Army");
         tvarmy.setRoot(rootItem);
         rootItem.setExpanded(true);
         tvarmy.setEditable(true);
-        tvarmy.setCellFactory((TreeView<String> p) ->
-                new TextFieldTreeCellImpl());
 
-        GeneralItem newItem = new GeneralItem("De Gaulle");
+        tvarmy.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEventHandle);
+
+        GeneralItem Gros = new GeneralItem("Gros");
+        TreeItem newItem = new TreeItem<GeneralItem>(Gros);
         rootItem.getChildren().add(newItem);
 
 
 
+
+        //Sur clic, créer l'objet General et ensuite créer l'item relié dans le treeview
+
+
+
+
     }
+
+    private final ContextMenu addMenu = new ContextMenu();
+
+    public void addGeneralMenu(TreeItem treeItem, MouseEvent event) {
+        Node node = event.getPickResult().getIntersectedNode();
+        MenuItem addMenuItem = new MenuItem("Add");
+        addMenu.getItems().add(addMenuItem);
+        addMenu.show(node, 2, 4);
+        addMenuItem.setOnAction((ActionEvent t) -> {
+            GeneralItem Fat = new GeneralItem("Fat");
+            TreeItem newItem = new TreeItem<GeneralItem>(Fat);
+            treeItem.getChildren().add(newItem);
+        });
+    }
+
+    EventHandler<MouseEvent> mouseEventHandle = (MouseEvent event) -> {
+        handleMouseClicked(event);
+    };
+
+    private void handleMouseClicked(MouseEvent event) {
+        //Node node = event.getPickResult().getIntersectedNode();
+        // Accept clicks only on node cells, and not on empty spaces of the TreeView
+        //if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+        String name = (String) ((TreeItem<?>)tvarmy.getSelectionModel().getSelectedItem()).getValue();
+        System.out.println("Item click: " + name);
+        addGeneralMenu(tvarmy.getSelectionModel().getSelectedItem(), event);
+
+    }
+
 
 }
 

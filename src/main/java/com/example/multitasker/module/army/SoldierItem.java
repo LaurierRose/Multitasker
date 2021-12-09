@@ -5,8 +5,10 @@ public class SoldierItem extends GeneralItem {
     int PV;
     int ID;
 
-    public SoldierItem(String name) {
+    public SoldierItem(String name, String rank, int PV) {
         super(name);
+        this.rank = rank;
+        this.PV = PV;
     }
 
     //getter
