@@ -100,4 +100,8 @@ public class Book {
         if (!Objects.equals(title, book.title)) return false;
         return Objects.equals(author, book.author);
     }
+
+    public boolean contains(String search)  {
+        return this.getTitle().toLowerCase().contains(search) || this.getAuthor().toLowerCase().contains(search);
+    }
 }

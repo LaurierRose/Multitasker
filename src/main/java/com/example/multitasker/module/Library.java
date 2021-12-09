@@ -6,9 +6,11 @@ import javafx.collections.ObservableList;
 public class Library {
 
     private ObservableList<Book> books;
+    private ObservableList<Book> results;
 
     public Library() {
         this.books = FXCollections.observableArrayList();
+        this.results = FXCollections.observableArrayList();
         this.books.add(new Book("The Shining", "Stephen King", 1977, 2, 3,
                 "Jack Torrance becomes winter caretaker at the isolated Overlook Hotel in Colorado, hoping to cure his writer's block.",
                 "https://images-na.ssl-images-amazon.com/images/I/51jSPyJ8v2L._SX302_BO1,204,203,200_.jpg"));
@@ -28,15 +30,21 @@ public class Library {
         this.books.add(new Book(fields[0], fields[1], released, column, row, fields[5], url));
     }
 
-    public void setCover(Book book, String url) {
-        book.setCover(url);
-    }
-
     public void remove(Book obj) {
         this.books.remove(obj);
     }
 
     public ObservableList<Book> getBooks() {
         return books;
+    }
+
+    public ObservableList<Book> search(String search) {
+        results.clear();
+        for (Book i : this.books) {
+            if (i.contains(search)) {
+                results.add(i);
+            }
+        }
+        return results;
     }
 }

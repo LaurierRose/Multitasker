@@ -70,6 +70,9 @@ public class LibraryController implements Initializable {
     private TextField rowField;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
     private TextField urlField;
 
     @FXML
@@ -102,6 +105,15 @@ public class LibraryController implements Initializable {
         bookTable.setItems(libList.getBooks());
         confirm.setOnMouseClicked(formAction -> {
             messageLabel.setText(fieldChecker());
+            bookTable.refresh();
+        });
+
+        searchField.setOnKeyPressed(searchAction -> {
+            if (!searchField.getText().isEmpty()) {
+                String terms = searchField.getText();
+                bookTable.setItems(libList.search(terms));
+                bookTable.refresh();
+            } else bookTable.setItems(libList.getBooks());
         });
 
         bookTable.setOnMouseClicked(listAction -> {
