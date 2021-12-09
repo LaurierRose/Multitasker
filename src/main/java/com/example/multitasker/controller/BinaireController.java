@@ -56,6 +56,7 @@ public class BinaireController implements Initializable {
             else{}
         });
 
+
         //Roman convertor
         inputRoman.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -65,6 +66,16 @@ public class BinaireController implements Initializable {
                 resultRoman.setText("");
             }
         });
+
+
+        hexaTxt.setOnKeyTyped(acion->{
+            if(!hexaTxt.getText().isEmpty()){
+                deciToHexaTxt.setText(hexaToDeci().toString());
+            }
+            else{}
+        });
+
+
 
     }
 
@@ -122,6 +133,28 @@ public class BinaireController implements Initializable {
         return result;
 
 
+    }
+    private Integer hexaToDeci(){
+        char charsOfHexadecimal[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        int n =0;
+        int result = 0;
+        String hexa = hexaTxt.getText();
+        char[] listChar = hexa.toCharArray();
+        System.out.println(listChar);
+
+        for (int i = listChar.length-1; i>=0;i--){
+            for (int j = 0; j < charsOfHexadecimal.length; j++) {
+                if (listChar[i] == charsOfHexadecimal[j]){
+                    result= (int) (result + j*Math.pow(16, n));
+                    n++;
+                }
+            }
+
+        }
+
+
+
+        return result;
     }
 
     //Roman method
