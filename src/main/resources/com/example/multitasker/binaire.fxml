@@ -5,50 +5,91 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.BinaireController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.BinaireController">
     <children>
-        <HBox prefHeight="68.0" prefWidth="600.0">
+        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1201.0">
             <children>
-                <Label alignment="CENTER" prefHeight="74.0" prefWidth="457.0" text="Décimale" />
-                <Label alignment="CENTER" prefHeight="68.0" prefWidth="462.0" text="Binaire" />
+                <Label alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" text="Décimale" />
+                <Label alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" text="Binaire" />
             </children>
         </HBox>
-        <HBox layoutY="68.0" prefHeight="68.0" prefWidth="600.0">
+        <HBox layoutY="68.0" prefHeight="800.0" prefWidth="1221.0">
             <children>
-                <VBox alignment="TOP_CENTER" maxHeight="40.0" maxWidth="500.0" prefHeight="50.0" prefWidth="500.0">
+                <VBox alignment="TOP_CENTER" maxHeight="40.0" maxWidth="705.0" prefHeight="40.0" prefWidth="705.0">
                     <children>
-                        <TextField fx:id="txtDecimal" maxHeight="26.0" maxWidth="160.0" prefHeight="26.0" prefWidth="220.0" />
+                        <TextField fx:id="txtDecimal" maxHeight="26.0" maxWidth="160.0" prefHeight="26.0" prefWidth="1200.0" />
                     </children>
                 </VBox>
-                <VBox alignment="TOP_CENTER" maxHeight="50.0" maxWidth="500.0" prefHeight="50.0" prefWidth="500.0">
+                <VBox alignment="TOP_CENTER" maxHeight="50.0" maxWidth="702.0" prefHeight="50.0" prefWidth="702.0">
                     <children>
-                        <TextField fx:id="txtBinaire" maxHeight="20.0" maxWidth="290.0" />
+                        <TextField fx:id="txtBinaire" maxHeight="26.0" maxWidth="290.0" prefHeight="26.0" prefWidth="290.0" />
                     </children>
                 </VBox>
             </children>
         </HBox>
-        <HBox layoutY="128.0" prefHeight="40.0" prefWidth="600.0">
+        <HBox alignment="CENTER" layoutX="-14.0" layoutY="128.0" prefHeight="40.0" prefWidth="1236.0">
             <children>
-                <Label alignment="CENTER" prefHeight="74.0" prefWidth="457.0" text="Décimale" />
-                <Label alignment="CENTER" prefHeight="68.0" prefWidth="462.0" text="Hexadecimal" />
+                <Label alignment="CENTER" prefHeight="40.0" prefWidth="343.0" text="Décimale" />
+            <VBox alignment="CENTER" maxWidth="340.0" prefHeight="40.0" prefWidth="267.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="155.0" text="Hexadimal convertor">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+                <Label alignment="CENTER" prefHeight="40.0" prefWidth="338.0" text="Hexadecimal" />
             </children>
         </HBox>
-        <HBox layoutX="3.0" layoutY="168.0" prefHeight="100.0" prefWidth="600.0">
+        <HBox layoutY="168.0" prefHeight="100.0" prefWidth="1200.0">
             <children>
-                <VBox alignment="TOP_CENTER" maxHeight="40.0" maxWidth="500.0" prefHeight="50.0" prefWidth="500.0">
+                <VBox alignment="TOP_CENTER" maxHeight="40.0" maxWidth="600.0" prefHeight="40.0" prefWidth="600.0">
                     <children>
                         <TextField fx:id="deciToHexaTxt" maxHeight="26.0" maxWidth="160.0" prefHeight="26.0" prefWidth="220.0" />
                     </children>
                 </VBox>
-                <VBox alignment="TOP_CENTER" maxHeight="40.0" maxWidth="500.0" prefHeight="50.0" prefWidth="500.0">
+                <VBox alignment="TOP_CENTER" maxHeight="40.0" maxWidth="601.0" prefHeight="40.0" prefWidth="597.0">
                     <children>
-                        <TextField fx:id="hexaTxt" maxHeight="20.0" maxWidth="290.0" />
+                        <TextField fx:id="hexaTxt" maxHeight="26.0" maxWidth="290.0" prefHeight="26.0" prefWidth="269.0" />
                     </children>
                 </VBox>
             </children>
         </HBox>
+      <VBox alignment="TOP_CENTER" layoutY="250.0" prefHeight="298.0" prefWidth="1200.0">
+         <children>
+            <Label fx:id="lblTitleRoman" prefHeight="38.0" prefWidth="139.0" text="Roman convertor">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="1115.0">
+               <children>
+                  <TextField fx:id="inputRoman" maxWidth="290.0" prefHeight="32.0" prefWidth="307.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="resultRoman" prefHeight="22.0" prefWidth="58.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" layoutX="2.0" prefHeight="36.0" prefWidth="1215.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="149.0" text="Binimal convertor">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
     </children>
 
 </AnchorPane>
-

@@ -2,6 +2,7 @@ package com.example.multitasker.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -20,6 +21,19 @@ public class BinaireController implements Initializable {
 
     @FXML
     private TextField txtDecimal;
+
+    @FXML
+    private TextField inputRoman;
+
+    @FXML
+    private Label lblTitleRoman;
+
+    @FXML
+    private Label resultRoman;
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtBinaire.setOnKeyTyped(action -> {
@@ -40,6 +54,16 @@ public class BinaireController implements Initializable {
                 hexaTxt.setText(deciToHexa());
             }
             else{}
+        });
+
+        //Roman convertor
+        inputRoman.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                int number = Integer.parseInt(newValue);
+                resultRoman.setText(convert(number));
+            } catch (NumberFormatException e) {
+                resultRoman.setText("");
+            }
         });
 
     }
@@ -96,7 +120,24 @@ public class BinaireController implements Initializable {
             nbrDecimal=nbrDecimal/16;
         }
         return result;
+
+
     }
+
+    //Roman method
+    private String convert(int number) {
+        String result = "";
+        int[] numbers = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        for (int i = 0; i < numbers.length; i++) {
+            while (number >= numbers[i]) {
+                result += roman[i];
+                number -= numbers[i];
+            }
+        }
+        return result;
+    }
+
 
 }
 
