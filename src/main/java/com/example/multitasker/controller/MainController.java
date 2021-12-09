@@ -1,5 +1,6 @@
 package com.example.multitasker.controller;
 
+import com.example.multitasker.MainApplication;
 import com.example.multitasker.module.Library;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -39,12 +40,6 @@ public class MainController implements Initializable {
     private AnchorPane mainWindow;
 
     @FXML
-    private MenuBar mbmenuBar;
-
-    @FXML
-    private MenuItem miquit;
-
-    @FXML
     private VBox library;
 
     @FXML
@@ -80,7 +75,7 @@ public class MainController implements Initializable {
         //Menu actions
 
         menuQuit.setOnAction(e->{
-            Platform.exit();
+            System.exit(0);
         });
 
         menuClose.setOnAction(action->{
