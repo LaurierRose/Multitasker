@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -34,17 +35,49 @@ public class ImcController implements Initializable {
     @FXML
     private Label infoRESULT;
 
+    @FXML
+    private Slider sliderIMC;
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BTN.setOnMouseClicked(event -> {
             double cm = Double.parseDouble(inputCM.getText());
             double poid = Double.parseDouble(inputPOID.getText());
             double imc =  (poid / (cm * cm));
-            RESULT.setText(String.valueOf(imc));
+            RESULT.setText(String.format("%.1f", imc));
+
+            sliderIMC.setValue(imc);
+
+            //Slider
+            if (imc < 18.5) {
+                infoRESULT.setText("You are underweight");
+            }
+            if (imc >= 18.5 && imc <= 25) {
+                infoRESULT.setText("You are normal");
+            }
+            if (imc > 25 && imc <= 30) {
+                infoRESULT.setText("You are overweight");
+            }
+            if (imc > 30) {
+                infoRESULT.setText("You are obese");
+            }
+
+            if (imc > 35 && imc <= 40) {
+                infoRESULT.setText("You are seriously obese");
+            }
+            if (imc > 40) {
+                infoRESULT.setText("You are morbidly obese");
+            }
+
+
+
+           /* //Label
             //arrondir à 2 chiffres après la virgule
             RESULT.setText(String.format("%.1f", imc));
             if (imc < 18.5) {
-                infoRESULT.setText("Vous êtes en souspoids");
+                infoRESULT.setText("You are underweight");
             }
             if (imc >= 18.5 && imc <= 25) {
                 infoRESULT.setText("You are of normal build");
@@ -53,14 +86,14 @@ public class ImcController implements Initializable {
                 infoRESULT.setText("you are overweight");
             }
             if (imc > 30 && imc <= 35) {
-                infoRESULT.setText("You are moderately obese");
+                infoRESULT.setText("You are obese");
             }
             if (imc > 35 && imc <= 40) {
                 infoRESULT.setText("You are severely obese");
             }
             if (imc > 40) {
                 infoRESULT.setText("You are morbidly obese");
-            }
+            }*/
 
 
         });
