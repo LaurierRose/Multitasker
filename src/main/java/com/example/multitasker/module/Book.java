@@ -5,7 +5,8 @@ public class Book {
     private String title;
     private String author;
     private int released;
-    private int[] location;
+    private int column;
+    private int row;
     private String summary;
     private String cover;
 
@@ -13,9 +14,37 @@ public class Book {
         this.title = title;
         this.author = author;
         this.released = released;
-        this.location[0] = column;
-        this.location[1] = row;
+        this.column = column;
+        this.row = row;
         this.summary = summary;
         this.cover = null;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getReleased() {
+        return String.valueOf(released);
+    }
+
+    public String getColumn() {
+        return String.valueOf(column);
+    }
+
+    public String getRow() {
+        return String.valueOf(row);
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getCover() {
+        return cover;
     }
 }
