@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnconverter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Numeric converter" GridPane.rowIndex="1">
+                  <Button fx:id="btnconverter" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Numeric converter" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

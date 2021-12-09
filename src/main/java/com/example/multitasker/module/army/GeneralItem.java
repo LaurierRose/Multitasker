@@ -1,12 +1,12 @@
 package com.example.multitasker.module.army;
 
-import com.example.multitasker.MainApplication;
 import com.example.multitasker.controller.ArmyController;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.TreeItem;
 
 public class GeneralItem{
     private SimpleStringProperty name;
-    int nbSoldiers = 0;
+    static int nbSoldiers;
 
     public GeneralItem(String name) {
         this.name = new SimpleStringProperty(name);
@@ -30,15 +30,16 @@ public class GeneralItem{
 
     @Override
     public String toString()  {
-        return name.get();
+        return "General "+name.get();
     }
 
-    /*
-    public int getNbSoldier(){
-        //Check number of childsItem in treeView
+
+    //Define number of soldiers of this General
+    public static int getNbSoldier(TreeItem<String> treeItem){
+        int number = treeItem.getChildren().size();
+        nbSoldiers = number;
         return number;
     }
-    Define number of soldiers of this General
-     */
+
 
 }

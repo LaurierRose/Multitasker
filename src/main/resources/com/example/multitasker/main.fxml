@@ -45,7 +45,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.MainController">
   <children>
     <MenuBar fx:id="mbmenuBar" VBox.vgrow="NEVER">
       <menus>
@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnconverter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Numeric converter" GridPane.rowIndex="1">
+                  <Button fx:id="btnconverter" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Numeric converter" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

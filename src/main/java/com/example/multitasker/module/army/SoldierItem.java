@@ -35,7 +35,7 @@ public class SoldierItem {
 
     @Override
     public String toString()  {
-        return name.get();
+        return "Soldier "+rank+name.get()+" "+PV;
     }
 
 }
