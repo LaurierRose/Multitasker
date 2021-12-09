@@ -57,6 +57,7 @@ public class BinaireController implements Initializable {
         });
 
 
+
         //Roman convertor
         inputRoman.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -68,13 +69,13 @@ public class BinaireController implements Initializable {
         });
 
 
+
         hexaTxt.setOnKeyTyped(acion->{
             if(!hexaTxt.getText().isEmpty()){
                 deciToHexaTxt.setText(hexaToDeci().toString());
             }
             else{}
         });
-
 
 
     }
@@ -84,12 +85,16 @@ public class BinaireController implements Initializable {
         String binaire = txtBinaire.getText();
         char[] listChar = binaire.toCharArray();
         int n = 0;
-        for (int i = listChar.length - 1; i >= 0; i--) {
-            if ((String.valueOf(listChar[i]).equals("1"))) {
-                result += Math.pow(2, n);
+        try {
+            for (int i = listChar.length - 1; i >= 0; i--) {
+                if ((String.valueOf(listChar[i]).equals("1"))) {
+                    result += Math.pow(2, n);
 
+                }
+                n++;
             }
-            n++;
+        } catch (Exception exception) {
+
         }
         return result;
     }
@@ -103,14 +108,18 @@ public class BinaireController implements Initializable {
         ArrayList<Integer> binaryNum = new ArrayList<Integer>();
 
         int i = 0;
-        while (nbrDecimal > 0) {
+        try {
+            while (nbrDecimal > 0) {
 
-            binaryNum.add(nbrDecimal % 2);
-            nbrDecimal = nbrDecimal / 2;
-            i++;
-        }
-        for (int j = binaryNum.size()-1;j>=0;j--){
-            resultBin += binaryNum.get(j);
+                binaryNum.add(nbrDecimal % 2);
+                nbrDecimal = nbrDecimal / 2;
+                i++;
+            }
+            for (int j = binaryNum.size() - 1; j >= 0; j--) {
+                resultBin += binaryNum.get(j);
+            }
+        } catch (Exception exception) {
+
         }
         return resultBin;
     }
@@ -123,13 +132,15 @@ public class BinaireController implements Initializable {
         char charsOfHexadecimal[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 
         int nbrDecimal = Integer.parseInt(decimal);
+try {
+    while (nbrDecimal > 0) {
+        reste = nbrDecimal % 16;
+        result = charsOfHexadecimal[reste] + result;
+        nbrDecimal = nbrDecimal / 16;
+    }
+} catch (Exception exception) {
 
-        while(nbrDecimal>0)
-        {
-            reste=nbrDecimal%16;
-            result=charsOfHexadecimal[reste]+result;
-            nbrDecimal=nbrDecimal/16;
-        }
+}
         return result;
 
 
@@ -141,38 +152,42 @@ public class BinaireController implements Initializable {
         String hexa = hexaTxt.getText();
         char[] listChar = hexa.toCharArray();
         System.out.println(listChar);
-
-        for (int i = listChar.length-1; i>=0;i--){
-            for (int j = 0; j < charsOfHexadecimal.length; j++) {
-                if (listChar[i] == charsOfHexadecimal[j]){
-                    result= (int) (result + j*Math.pow(16, n));
-                    n++;
-                }
+try {
+    for (int i = listChar.length - 1; i >= 0; i--) {
+        for (int j = 0; j < charsOfHexadecimal.length; j++) {
+            if (listChar[i] == charsOfHexadecimal[j]) {
+                result = (int) (result + j * Math.pow(16, n));
+                n++;
             }
-
         }
 
+    }
+} catch (Exception exception) {
 
-
+}
         return result;
     }
-
-    //Roman method
+        //Roman method
     private String convert(int number) {
         String result = "";
         int[] numbers = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-        for (int i = 0; i < numbers.length; i++) {
-            while (number >= numbers[i]) {
-                result += roman[i];
-                number -= numbers[i];
+        try {
+            for (int i = 0; i < numbers.length; i++) {
+                while (number >= numbers[i]) {
+                    result += roman[i];
+                    number -= numbers[i];
+                }
             }
+        } catch (Exception exception) {
+
         }
         return result;
     }
 
 
-}
+        }
+        
 
 
 
