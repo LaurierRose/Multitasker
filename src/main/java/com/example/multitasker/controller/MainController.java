@@ -54,7 +54,13 @@ public class MainController implements Initializable {
     private VBox VboxIMC;
 
     @FXML
+
     private MenuItem menuQuit;
+
+    @FXML
+    private AnchorPane numericConverter;
+
+
 
     @FXML
     private MenuItem menuClose;
@@ -91,7 +97,7 @@ public class MainController implements Initializable {
 
 
         //First visit
-        mainWindow.getChildren().removeAll(library, army, VboxIMC);
+        mainWindow.getChildren().removeAll(library, army, VboxIMC, numericConverter);
 
 
         //Go to library application
@@ -109,6 +115,10 @@ public class MainController implements Initializable {
         btnIMC.setOnMouseClicked(e -> {
             displayForm.handle(e);
             mainWindow.getChildren().add(VboxIMC);
+        });
+        btnconverter.setOnMouseClicked(e -> {
+            displayForm.handle(e);
+            mainWindow.getChildren().add(numericConverter);
         });
 
     }
