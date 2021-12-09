@@ -39,7 +39,23 @@ public class ImcController implements Initializable {
     private Slider sliderIMC;
 
 
-
+    /**
+     *  Set an event on mouse clicked on the button that calculate the BMI  (1)
+     *  of the user.
+     *
+     *  String.format (%.1, imc) restricts decimals to 1 after the decimal point (2)
+     *
+     * SliderIMC.setValue(imc) put the value obtain in slider (3)
+     *
+     * Then put conditions on every step of the BMI sytsem, that indicate the level of BMI (4)
+     *
+     *
+     * @param url
+     *
+     *
+     * @param resourceBundle
+     *
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BTN.setOnMouseClicked(event -> {
@@ -47,6 +63,7 @@ public class ImcController implements Initializable {
             double poid = Double.parseDouble(inputPOID.getText());
             double imc =  (poid / (cm * cm));
             RESULT.setText(String.format("%.1f", imc));
+
 
             sliderIMC.setValue(imc);
 
