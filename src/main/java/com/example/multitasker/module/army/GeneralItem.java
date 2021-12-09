@@ -1,5 +1,7 @@
 package com.example.multitasker.module.army;
 
+import com.example.multitasker.MainApplication;
+import com.example.multitasker.controller.ArmyController;
 import javafx.beans.property.SimpleStringProperty;
 
 public class GeneralItem{
@@ -8,6 +10,7 @@ public class GeneralItem{
 
     public GeneralItem(String name) {
         this.name = new SimpleStringProperty(name);
+        ArmyController.nbGeneral++ ;
     }
 
     //Getter

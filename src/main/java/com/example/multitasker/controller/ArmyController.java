@@ -60,12 +60,21 @@ public class ArmyController implements Initializable {
     @FXML
     private VBox formPane;
 
+    @FXML
+    private Label lblnbGeneral;
+
+    @FXML
+    private Label lblnbSoldier;
+
     //Create Treeview Contextmenu
     static private final ContextMenu addMenuG = new ContextMenu();
     static private final ContextMenu addMenuS = new ContextMenu();
     static MenuItem addMenuItemG = new MenuItem("Add General");
     static MenuItem addMenuItemS = new MenuItem("Add Soldier");
 
+    //Troops overview
+    public static int nbSoldier = 0;
+    public static int nbGeneral = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,9 +99,8 @@ public class ArmyController implements Initializable {
 
 
 
-    public void addMenu(TreeItem treeItem, MouseEvent event, MenuItem submenu,
-                        ContextMenu menu, char test, Button btnadd, VBox form,
-                        String type, TextField txtfield, Node node) {
+    public void addMenu(TreeItem treeItem, MenuItem submenu,
+                        ContextMenu menu, char test, VBox form, Node node) {
         //Display menu position
         Bounds boundsInScreen = node.localToScreen(node.getBoundsInLocal());
         menu.show(node, boundsInScreen.getMaxX(), boundsInScreen.getMaxY());
@@ -101,13 +109,24 @@ public class ArmyController implements Initializable {
             if(formPane.getChildren() != form){
                 formPane.getChildren().add(form);
             }
-            btnadd.setOnMouseClicked(action -> {
-                GeneralItem newGeneral = new GeneralItem(txtfield.getText());
-                TreeItem newItem = new TreeItem<GeneralItem>(newGeneral);
-                treeItem.getChildren().add(newItem);
-                newItem.setValue(type+ " " + newGeneral.toString());
-                formPane.getChildren().remove(form);
-            });
+            if(test == 'Y'){
+                btnaddg.setOnMouseClicked(action -> {
+                    GeneralItem newGeneral = new GeneralItem(txtgeneralName.getText());
+                    TreeItem newItem = new TreeItem<GeneralItem>(newGeneral);
+                    treeItem.getChildren().add(newItem);
+                    newItem.setValue("General " + newGeneral.toString());
+                    formPane.getChildren().remove(form);
+                });
+            } else {
+                btnadds.setOnMouseClicked(action -> {
+                    SoldierItem newSoldier = new SoldierItem(txtsoldierName.getText(), sprank.getText(), txtvitalPoint.getText());
+                    TreeItem newItem = new TreeItem<SoldierItem>(newSoldier);
+                    treeItem.getChildren().add(newItem);
+                    newItem.setValue("Soldier " + newSoldier.toString());
+                    formPane.getChildren().remove(form);
+                });
+            }
+
         });
 
     }
@@ -127,23 +146,23 @@ public class ArmyController implements Initializable {
             //Test on what is selected
             String itemValue = currentNode.getValue();
             char test = itemValue.charAt(0);
-            String name = (String) ((TreeItem<?>)tvarmy.getSelectionModel().getSelectedItem()).getValue();
-            System.out.println("Item click: " + name);
+            //String name = (String) ((TreeItem<?>)tvarmy.getSelectionModel().getSelectedItem()).getValue();
+            //System.out.println("Item click: " + name);
             switch (test){
                 case 'Y':
-                    addMenu(currentNode, event, addMenuItemG, addMenuG, test, btnaddg, generalForm, "General", txtgeneralName, node);
+                    GeneralItem newGeneral = new GeneralItem(txtgeneralName.getText());
+                    addMenu(currentNode, addMenuItemG, addMenuG, test, generalForm, node);
                     currentNode.setExpanded(true);
+                    lblnbGeneral.setText(String.valueOf(nbGeneral));
                     break;
                 case 'G':
-                    addMenu(currentNode, event, addMenuItemS, addMenuS, test, btnadds, soldierForm, "Soldier", txtsoldierName, node);
+                    addMenu(currentNode, addMenuItemS, addMenuS, test, soldierForm, node);
                     currentNode.setExpanded(true);
+                    lblnbSoldier.setText(String.valueOf(nbSoldier));
                     break;
                 case'S':
                     break;
-
-
             }
-
         }
 
     }
