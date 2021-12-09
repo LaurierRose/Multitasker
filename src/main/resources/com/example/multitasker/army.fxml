@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.multitasker.controller.ArmyController">
    <children>
-      <SplitPane dividerPositions="5.3965" prefHeight="600.0" prefWidth="1002.0">
+      <SplitPane fx:id="treezone" dividerPositions="5.3965" prefHeight="600.0" prefWidth="1002.0">
          <items>
             <TreeView fx:id="tvarmy" editable="true" prefHeight="600.0" prefWidth="572.0" />
-            <VBox prefHeight="600.0" prefWidth="420.0">
+            <VBox fx:id="formPane" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <fx:include source="armyForm.fxml" />
+                  <VBox fx:id="generalForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0">
+                     <children>
+                        <Label text="General name">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtgeneralName">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="btnaddg" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" text="Add" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="soldierForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0">
+                     <children>
+                        <Label text="Soldier name">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtsoldierName">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Rank">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <SplitMenuButton fx:id="sprank" mnemonicParsing="false" text="Choose rank">
+                          <items>
+                            <MenuItem fx:id="Seargeant" mnemonicParsing="false" text="Seargeant" />
+                              <MenuItem fx:id="Corporal" mnemonicParsing="false" text="Corporal" />
+                            <MenuItem fx:id="Private" mnemonicParsing="false" text="Private" />
+                          </items>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </SplitMenuButton>
+                        <Label text="Vital points">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtvitalPoint">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="btnadds" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" text="Add " textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </items>

@@ -49,16 +49,17 @@
   <children>
     <MenuBar fx:id="mbmenuBar" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu fx:id="menu" mnemonicParsing="false" text="File">
           <items>
-            <MenuItem fx:id="miquit" mnemonicParsing="false" text="Quit" />
+                  <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close application" />
+            <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="Quit" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
     <AnchorPane fx:id="mainWindow" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <GridPane alignment="CENTER" prefHeight="373.0" prefWidth="640.0">
+            <GridPane fx:id="gridmenu" alignment="CENTER" prefHeight="373.0" prefWidth="640.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
