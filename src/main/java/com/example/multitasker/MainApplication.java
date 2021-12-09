@@ -19,15 +19,6 @@ public class MainApplication extends Application {
         stage.setTitle("Welcome to multitasker!");
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }
-        });
-
-
     }
 
     public static void main(String[] args) {

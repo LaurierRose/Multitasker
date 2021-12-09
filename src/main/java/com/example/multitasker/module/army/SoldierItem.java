@@ -1,13 +1,18 @@
 package com.example.multitasker.module.army;
 
-public class SoldierItem extends GeneralItem {
+import com.example.multitasker.controller.ArmyController;
+import javafx.beans.property.SimpleStringProperty;
+
+public class SoldierItem {
+    private SimpleStringProperty name;
     String rank;
     String PV;
 
     public SoldierItem(String name, String rank, String PV) {
-        super(name);
+        this.name = new SimpleStringProperty(name);
         this.rank = rank;
         this.PV = PV;
+        ArmyController.nbSoldier++ ;
     }
 
     //getter
@@ -26,6 +31,11 @@ public class SoldierItem extends GeneralItem {
 
     public void setPV(String PV) {
         this.PV = PV;
+    }
+
+    @Override
+    public String toString()  {
+        return name.get();
     }
 
 }

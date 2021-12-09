@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 
 import java.net.URL;
@@ -59,28 +60,27 @@ public class ArmyController implements Initializable {
     @FXML
     private VBox formPane;
 
+    @FXML
+    private Label lblnbGeneral;
+
+    @FXML
+    private Label lblnbSoldier;
+
+    //Create Treeview Contextmenu
+    static private final ContextMenu addMenuG = new ContextMenu();
+    static private final ContextMenu addMenuS = new ContextMenu();
+    static MenuItem addMenuItemG = new MenuItem("Add General");
+    static MenuItem addMenuItemS = new MenuItem("Add Soldier");
+
+    //Troops overview
+    public static int nbSoldier = 0;
+    public static int nbGeneral = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        EventHandler<MouseEvent> displayForm = new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (!formPane.getChildren().isEmpty()) {
-                    ObservableList child = formPane.getChildren();
-                    formPane.getChildren().removeAll(child);
-                }
-            }
-        };
-/*
-//Pour afficher les formulaires d'édition des treeView items
-        itemselected.setOnMouseClicked(e -> {
-            displayForm.handle(e);
-            formPane.getChildren().add(library);
-        });
- */
         //first visit
         formPane.getChildren().removeAll(soldierForm, generalForm);
-
 
         //Initialize root item
         TreeItem<String> rootItem = new TreeItem<>("Your Army");
@@ -88,39 +88,48 @@ public class ArmyController implements Initializable {
         rootItem.setExpanded(true);
         tvarmy.setEditable(true);
 
+        //Initialize Context menus
+        addMenuG.getItems().add(addMenuItemG);
+        addMenuS.getItems().add(addMenuItemS);
+
         //Listen to event on treeview
         tvarmy.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEventHandle);
 
-
     }
 
-    private final ContextMenu addMenuG = new ContextMenu();
-    private final ContextMenu addMenuS = new ContextMenu();
-    MenuItem addMenuItemG = new MenuItem("Add General");
-    MenuItem addMenuItemS = new MenuItem("Add Soldier");
 
-    public void addMenu(TreeItem treeItem, MouseEvent event, MenuItem submenu, ContextMenu menu, char test, Button btnadd, VBox form, String type, TextField txtfield) {
-        Node node = event.getPickResult().getIntersectedNode();
-        menu.getItems().add(submenu);
+
+    public void addMenu(TreeItem treeItem, MenuItem submenu,
+                        ContextMenu menu, char test, VBox form, Node node) {
         //Display menu position
         Bounds boundsInScreen = node.localToScreen(node.getBoundsInLocal());
         menu.show(node, boundsInScreen.getMaxX(), boundsInScreen.getMaxY());
-        //Action of menu
+        //Action of Context menu
         submenu.setOnAction((ActionEvent t) -> {
-            if(formPane.getChildren().isEmpty()){
+            if(formPane.getChildren() != form){
                 formPane.getChildren().add(form);
             }
-            btnadd.setOnMouseClicked(action -> {
-                GeneralItem newGeneral = new GeneralItem(txtfield.getText());
-                TreeItem newItem = new TreeItem<GeneralItem>(newGeneral);
-                treeItem.getChildren().add(newItem);
-                newItem.setValue(type+ " " + newGeneral.toString());
-                formPane.getChildren().remove(form);
-            });
+            if(test == 'Y'){
+                btnaddg.setOnMouseClicked(action -> {
+                    GeneralItem newGeneral = new GeneralItem(txtgeneralName.getText());
+                    TreeItem newItem = new TreeItem<GeneralItem>(newGeneral);
+                    treeItem.getChildren().add(newItem);
+                    newItem.setValue("General " + newGeneral.toString());
+                    formPane.getChildren().remove(form);
+                });
+            } else {
+                btnadds.setOnMouseClicked(action -> {
+                    SoldierItem newSoldier = new SoldierItem(txtsoldierName.getText(), sprank.getText(), txtvitalPoint.getText());
+                    TreeItem newItem = new TreeItem<SoldierItem>(newSoldier);
+                    treeItem.getChildren().add(newItem);
+                    newItem.setValue("Soldier " + newSoldier.toString());
+                    formPane.getChildren().remove(form);
+                });
+            }
+
         });
 
     }
-
 
 
     //Event listener on treeview
@@ -129,27 +138,31 @@ public class ArmyController implements Initializable {
     };
     //Actions when click detected
     private void handleMouseClicked(MouseEvent event) {
-        TreeItem<String> currentNode = tvarmy.getSelectionModel().getSelectedItem();
-        String itemValue = "";
-        try {
-            itemValue = currentNode.getValue();
-        } catch (Exception e){
-            System.err.println("Ho ho... ");
-        }
-        char test = itemValue.charAt(0);
-        String name = (String) ((TreeItem<?>)tvarmy.getSelectionModel().getSelectedItem()).getValue();
-        System.out.println("Item click: " + name);
-        switch (test){
-            case 'Y':
-                addMenu(currentNode, event, addMenuItemG, addMenuG, test, btnaddg, generalForm, "General", txtgeneralName);
-                currentNode.setExpanded(true);
-                break;
-            case 'G':
-                addMenu(currentNode, event, addMenuItemS, addMenuS, test, btnadds, soldierForm, "Soldier", txtsoldierName);
-                currentNode.setExpanded(true);
-                break;
-            case'S':
-                break;
+        // To know where the user clicks
+        Node node = event.getPickResult().getIntersectedNode();
+        if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)){
+            TreeItem<String> currentNode = new TreeItem<>();
+            currentNode = tvarmy.getSelectionModel().getSelectedItem();
+            //Test on what is selected
+            String itemValue = currentNode.getValue();
+            char test = itemValue.charAt(0);
+            //String name = (String) ((TreeItem<?>)tvarmy.getSelectionModel().getSelectedItem()).getValue();
+            //System.out.println("Item click: " + name);
+            switch (test){
+                case 'Y':
+                    GeneralItem newGeneral = new GeneralItem(txtgeneralName.getText());
+                    addMenu(currentNode, addMenuItemG, addMenuG, test, generalForm, node);
+                    currentNode.setExpanded(true);
+                    lblnbGeneral.setText(String.valueOf(nbGeneral));
+                    break;
+                case 'G':
+                    addMenu(currentNode, addMenuItemS, addMenuS, test, soldierForm, node);
+                    currentNode.setExpanded(true);
+                    lblnbSoldier.setText(String.valueOf(nbSoldier));
+                    break;
+                case'S':
+                    break;
+            }
         }
 
     }
