@@ -99,9 +99,19 @@ public class ArmyController implements Initializable {
         rootItem.setExpanded(true);
         tvarmy.setEditable(true);
 
-        //Initialize Context menus
+        //Initialize Context menus and splitmenu
         addMenuG.getItems().add(addMenuItemG);
         addMenuS.getItems().add(addMenuItemS);
+        Seargeant.setOnAction((e)-> {
+            sprank.setText(Seargeant.getText());
+        });
+        Corporal.setOnAction((e)-> {
+            sprank.setText(Corporal.getText());
+        });
+        Private.setOnAction((e)-> {
+            sprank.setText(Private.getText());
+        });
+
 
         //Listen to event on treeview
         tvarmy.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEventHandle);
@@ -131,7 +141,7 @@ public class ArmyController implements Initializable {
                 });
             } else {
                 btnadds.setOnMouseClicked(action -> {
-                    SoldierItem newSoldier = new SoldierItem(txtsoldierName.getText(), sprank.getAccessibleRoleDescription(), txtvitalPoint.getText());
+                    SoldierItem newSoldier = new SoldierItem(txtsoldierName.getText(), sprank.getText(), txtvitalPoint.getText());
                     TreeItem newItem = new TreeItem<>(newSoldier);
                     treeItem.getChildren().add(newItem);
                     newItem.setValue(newSoldier.toString());
@@ -220,6 +230,7 @@ public class ArmyController implements Initializable {
                 btnadds.setOnMouseClicked(e->{
                     element.setName(txtsoldierName.getText());
                     element.setPV(txtvitalPoint.getText());
+                    element.setRank(sprank.getText());
                     item.setValue(element.toString());
                     formPane.getChildren().remove(soldierForm);
                 });
