@@ -206,8 +206,8 @@ public class ArmyController implements Initializable {
         }
         formPane.getChildren().add(generalForm);
         for(GeneralItem element: generalList) {
+            txtgeneralName.setText(element.getName());
             if (item.getValue().equals(element.toString())) {
-                System.out.println(element.getName());
                 btnaddg.setOnMouseClicked(e->{
                     lnlUnderCommandS.setText(String.valueOf(element.getNbSoldier(item)));
                     element.setName(txtgeneralName.getText());
@@ -225,8 +225,9 @@ public class ArmyController implements Initializable {
         }
         formPane.getChildren().add(soldierForm);
         for(SoldierItem element: soldierList) {
+            txtsoldierName.setText(element.getName());
+            txtvitalPoint.setText(element.getPV());
             if (item.getValue().equals(element.toString())) {
-                System.out.println(element.getName());
                 btnadds.setOnMouseClicked(e->{
                     element.setName(txtsoldierName.getText());
                     element.setPV(txtvitalPoint.getText());
