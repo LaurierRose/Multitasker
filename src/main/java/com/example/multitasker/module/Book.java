@@ -102,6 +102,7 @@ public class Book {
     }
 
     public boolean contains(String search)  {
-        return this.getTitle().toLowerCase().contains(search) || this.getAuthor().toLowerCase().contains(search);
+        String cleanSearch = search.toLowerCase().trim();
+        return this.getTitle().toLowerCase().contains(cleanSearch) || this.getAuthor().toLowerCase().contains(cleanSearch);
     }
 }
