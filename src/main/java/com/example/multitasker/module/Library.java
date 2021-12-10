@@ -20,6 +20,13 @@ public class Library {
         this.books.add(new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1979,
                 1, 4, "Ford is a cleverly disguised alien, who has been stranded on Earth for the" +
                 "past 15 years as he writes a revised guide to the galaxy."));
+        this.books.add(new Book("Pride and Prejudice", "Jane Austen", 1813,
+                3, 4, "A turbulent relationship between Elizabeth Bennet, the daughter of a country" +
+                "gentleman, and Fitzwilliam Darcy, a rich aristocrat.",
+                "https://ae01.alicdn.com/kf/HTB1wihvPpXXXXa7XXXXq6xXFXXXM/Pride-And-Prejudice-Book-Cover-Locket-Necklace-keyring-silver-Bronze-tone-B0964.jpg"));
+        this.books.add(new Book("Hamlet", "William Shakespeare", 1609,
+                5, 7, "The ghost of the King of Denmark tells his son Hamlet to avenge his murder by killing the new king.",
+                "https://i.pinimg.com/originals/35/e6/89/35e6891ab791c4b3a0f08b491f9e05e1.jpg"));
     }
 
     public void add(String[] fields, int released, int column, int row) {

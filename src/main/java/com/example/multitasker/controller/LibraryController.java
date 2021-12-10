@@ -53,13 +53,15 @@ public class LibraryController implements Initializable {
 
     @FXML
     private Button addButton;
+
     @FXML
     private Button editButton;
+
     @FXML
     private Button remove;
+
     @FXML
     private TableColumn<Book, String> releasedColumn;
-
     @FXML
     private TextField releasedField;
 
@@ -79,7 +81,7 @@ public class LibraryController implements Initializable {
     private TableColumn<Book, String> summaryColumn;
 
     @FXML
-    private TextField summaryField;
+    private TextArea summaryField;
 
     @FXML
     private TableColumn<Book, String> titleColumn;
@@ -95,6 +97,8 @@ public class LibraryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bookCover.setImage(defaultImg);
         toggleFields(true);
+        summaryField.setWrapText(true);
+        messageLabel.setWrapText(true);
         titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
         authorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAuthor()));
         releasedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getReleased()));
@@ -103,11 +107,14 @@ public class LibraryController implements Initializable {
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSummary()));
 
         bookTable.setItems(libList.getBooks());
+        bookTable.getSortOrder().addAll(titleColumn);
         confirm.setOnMouseClicked(formAction -> {
             messageLabel.setText(fieldChecker());
+            bookTable.getSortOrder().addAll(titleColumn);
             bookTable.refresh();
         });
 
+        // Replaces book table with search results
         searchField.setOnKeyPressed(searchAction -> {
             if (!searchField.getText().isEmpty()) {
                 String terms = searchField.getText();
@@ -153,8 +160,10 @@ public class LibraryController implements Initializable {
     }
 
     public String fieldChecker() {
+        // Checks if entered data is valid and returns message accordingly.
         String[] enteredDetails = {titleField.getText(), authorField.getText(), releasedField.getText(), columnField.getText(),
                 rowField.getText(), summaryField.getText()};
+
         for (String i : enteredDetails) if (i.isEmpty()) {
             messageLabel.setTextFill(Color.RED);
             return "Please enter all mandatory fields.";
@@ -168,14 +177,11 @@ public class LibraryController implements Initializable {
             column = Integer.parseInt(columnField.getText());
             row = Integer.parseInt(rowField.getText());
         }
-
         if (!(column > 0 && column < 6 && row > 0 && row < 8)) {
             messageLabel.setTextFill(Color.RED);
             return "Please enter valid Column (1-5) and Row (1-7) fields.";
         }
-
         if (releasedField.getText().matches("-?\\d+")) released = Integer.parseInt(releasedField.getText());
-
         if (released > Year.now().getValue() || released < 1500) {
             messageLabel.setTextFill(Color.RED);
             return "Please enter a valid release year.";
@@ -195,29 +201,34 @@ public class LibraryController implements Initializable {
     }
 
     public void showSelected() {
+        // Shows info from selected row.
         Book selected = bookTable.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
         titleField.setText(selected.getTitle());
         authorField.setText(selected.getAuthor());
         releasedField.setText(selected.getReleased());
         columnField.setText(selected.getColumn());
         rowField.setText(selected.getRow());
         summaryField.setText(selected.getSummary());
-        urlField.setText(selected.getCover());
-        if (selected.getCover() != null) {
+        if (selected.getCover() != null && !selected.getCover().equals("")) {
             bookCover.setImage(new Image(selected.getCover()));
-        } else bookCover.setImage(defaultImg);
+            urlField.setText(selected.getCover());
+        } else {
+            bookCover.setImage(defaultImg);
+            urlField.setText("");
+        }
     }
 
     public void clear() {
-        TextField[] fields = {titleField, authorField, releasedField, columnField, rowField, summaryField, urlField};
-        for (TextField i : fields) {
-            i.setText("");
-        }
+        // Clears all form fields.
+        TextInputControl[] fields = {titleField, authorField, releasedField, columnField, rowField, summaryField, urlField};
+        for (TextInputControl i : fields) i.setText("");
         bookCover.setImage(defaultImg);
         messageLabel.setText("");
     }
 
     public void edit(String[] details, int released, int column, int row, String url) {
+        // Recover all form fields and sets them for selected book
         int selected = bookTable.getSelectionModel().getSelectedIndex();
         libList.getBooks().get(selected).setTitle(details[0]);
         libList.getBooks().get(selected).setAuthor(details[1]);
@@ -229,6 +240,7 @@ public class LibraryController implements Initializable {
     }
 
     public void toggleFields(boolean state) {
+        // Switches form fields on and off.
         titleField.setDisable(state);
         authorField.setDisable(state);
         releasedField.setDisable(state);
