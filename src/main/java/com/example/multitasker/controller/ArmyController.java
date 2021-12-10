@@ -181,7 +181,7 @@ public class ArmyController implements Initializable {
                     break;
                 case'S':
                     if (event.getClickCount()==2) {
-                        setModifySoldierForm();
+                        setModifySoldierForm(currentNode);
                     }
                     break;
             }
@@ -191,30 +191,42 @@ public class ArmyController implements Initializable {
 
     public void setModifyGeneralForm(TreeItem item){
         clearForms();
-        if(formPane.getChildren().isEmpty()) {
-            formPane.getChildren().add(generalForm);
+        if(!formPane.getChildren().isEmpty()) {
+            formPane.getChildren().removeAll(soldierForm, generalForm);
         }
+        formPane.getChildren().add(generalForm);
         for(GeneralItem element: generalList) {
             if (item.getValue().equals(element.toString())) {
                 System.out.println(element.getName());
-
+                btnaddg.setOnMouseClicked(e->{
+                    lnlUnderCommandS.setText(String.valueOf(element.getNbSoldier(item)));
+                    element.setName(txtgeneralName.getText());
+                    item.setValue(element.toString());
+                    formPane.getChildren().remove(generalForm);
+                });
             }
         }
-        //Set all thing in the form in order to modify it
-        //Disable Add and enable Modify button
-        //Close form and update object
-
-
     }
 
-    public void setModifySoldierForm(){
+    public void setModifySoldierForm(TreeItem item){
         clearForms();
-        if(formPane.getChildren().isEmpty()) {
-            formPane.getChildren().add(soldierForm);
+        if(!formPane.getChildren().isEmpty()) {
+            formPane.getChildren().removeAll(generalForm, generalForm);
         }
-
-
+        formPane.getChildren().add(soldierForm);
+        for(SoldierItem element: soldierList) {
+            if (item.getValue().equals(element.toString())) {
+                System.out.println(element.getName());
+                btnadds.setOnMouseClicked(e->{
+                    element.setName(txtsoldierName.getText());
+                    element.setPV(txtvitalPoint.getText());
+                    item.setValue(element.toString());
+                    formPane.getChildren().remove(soldierForm);
+                });
+            }
+        }
     }
+
 
     public void clearForms(){
         txtgeneralName.clear();

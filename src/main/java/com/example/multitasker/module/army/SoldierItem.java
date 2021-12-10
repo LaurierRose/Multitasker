@@ -16,6 +16,15 @@ public class SoldierItem {
     }
 
     //getter
+
+    public String getName() {
+        return name.get();
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
     public String getRank() {
         return rank;
     }
@@ -25,6 +34,10 @@ public class SoldierItem {
     }
 
     //setter
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
     public void setRank(String rank) {
         this.rank = rank;
     }
@@ -35,7 +48,7 @@ public class SoldierItem {
 
     @Override
     public String toString()  {
-        return "Soldier "+rank+name.get()+" "+PV;
+        return "Soldier "+rank+" "+name.get()+" "+PV;
     }
 
 }

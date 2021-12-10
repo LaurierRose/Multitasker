@@ -18,10 +18,6 @@ public class GeneralItem{
         return name.get();
     }
 
-    public int getNbSoldiers() {
-        return nbSoldiers;
-    }
-
     //Setter
 
     public void setName(String newname) {

@@ -93,7 +93,7 @@
                         <Insets bottom="230.0" left="400.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnIMC" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="IMC" GridPane.columnIndex="1">
+                  <Button fx:id="btnIMC" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="BMI" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
