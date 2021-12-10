@@ -55,8 +55,6 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane numericConverter;
 
-
-
     @FXML
     private MenuItem menuClose;
 
