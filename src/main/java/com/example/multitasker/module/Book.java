@@ -14,12 +14,7 @@ public class Book {
 
 
     public Book(String title, String author, int released, int column, int row, String summary, String cover) {
-        this.title = title;
-        this.author = author;
-        this.released = released;
-        this.column = column;
-        this.row = row;
-        this.summary = summary;
+        this(title, author, released, column, row, summary);
         this.cover = cover;
     }
 
@@ -102,7 +97,7 @@ public class Book {
     }
 
     public boolean contains(String search)  {
-        String cleanSearch = search.toLowerCase().trim();
-        return this.getTitle().toLowerCase().contains(cleanSearch) || this.getAuthor().toLowerCase().contains(cleanSearch);
+        String sanitizedSearch = search.toLowerCase().trim();
+        return this.getTitle().toLowerCase().contains(sanitizedSearch) || this.getAuthor().toLowerCase().contains(sanitizedSearch);
     }
 }

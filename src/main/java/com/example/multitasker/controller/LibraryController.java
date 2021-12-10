@@ -62,6 +62,7 @@ public class LibraryController implements Initializable {
 
     @FXML
     private TableColumn<Book, String> releasedColumn;
+
     @FXML
     private TextField releasedField;
 
