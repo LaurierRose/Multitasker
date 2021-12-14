@@ -1,21 +1,16 @@
 package com.example.multitasker.controller;
 
-import com.example.multitasker.MainApplication;
-import com.example.multitasker.module.Library;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;

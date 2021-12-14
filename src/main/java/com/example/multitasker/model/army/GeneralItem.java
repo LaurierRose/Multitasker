@@ -1,16 +1,16 @@
-package com.example.multitasker.module.army;
+package com.example.multitasker.model.army;
 
 import com.example.multitasker.controller.ArmyController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TreeItem;
 
 public class GeneralItem{
-    private SimpleStringProperty name;
-    static int nbSoldiers;
+    private final SimpleStringProperty name;
+    static int nbSoldiers = 0;
 
     public GeneralItem(String name) {
         this.name = new SimpleStringProperty(name);
-        ArmyController.nbGeneral++ ;
+        ++ArmyController.nbGeneral;
     }
 
     //Getter
@@ -18,23 +18,22 @@ public class GeneralItem{
         return name.get();
     }
 
-    //Setter
+    public static int getNbSoldiers() {
+        return nbSoldiers;
+    }
 
+    //Setter
     public void setName(String newname) {
         name.set(newname);
+    }
+
+    public static void setNbSoldiers(int nbSoldiers) {
+        GeneralItem.nbSoldiers = nbSoldiers;
     }
 
     @Override
     public String toString()  {
         return "General "+name.get();
-    }
-
-
-    //Define number of soldiers of this General
-    public static int getNbSoldier(TreeItem<String> treeItem){
-        int number = treeItem.getChildren().size();
-        nbSoldiers = number;
-        return number;
     }
 
 

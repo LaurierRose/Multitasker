@@ -1,4 +1,4 @@
-package com.example.multitasker.module.army;
+package com.example.multitasker.model.army;
 
 import com.example.multitasker.controller.ArmyController;
 import javafx.beans.property.SimpleStringProperty;

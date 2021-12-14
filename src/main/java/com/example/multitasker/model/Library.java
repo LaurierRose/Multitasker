@@ -1,4 +1,4 @@
-package com.example.multitasker.module;
+package com.example.multitasker.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

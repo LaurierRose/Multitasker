@@ -1,24 +1,15 @@
 package com.example.multitasker.controller;
 
-import com.example.multitasker.module.Book;
-import com.example.multitasker.module.Library;
-import javafx.beans.property.SimpleIntegerProperty;
+import com.example.multitasker.model.Book;
+import com.example.multitasker.model.Library;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.time.Year;
 import java.util.ResourceBundle;

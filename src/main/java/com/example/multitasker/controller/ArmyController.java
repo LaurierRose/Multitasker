@@ -1,7 +1,7 @@
 package com.example.multitasker.controller;
 
-import com.example.multitasker.module.army.GeneralItem;
-import com.example.multitasker.module.army.SoldierItem;
+import com.example.multitasker.model.army.GeneralItem;
+import com.example.multitasker.model.army.SoldierItem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -132,6 +132,7 @@ public class ArmyController implements Initializable {
             if(test == 'Y'){
                 btnaddg.setOnMouseClicked(action -> {
                     GeneralItem newGeneral = new GeneralItem(txtgeneralName.getText());
+                    lnlUnderCommandS.setText(String.valueOf(newGeneral.getNbSoldiers()));
                     TreeItem newItem = new TreeItem<>(newGeneral);
                     treeItem.getChildren().add(newItem);
                     newItem.setValue(newGeneral.toString());
@@ -184,7 +185,6 @@ public class ArmyController implements Initializable {
                     if(event.getButton()== MouseButton.SECONDARY) {
                         addMenu(currentNode, addMenuItemS, addMenuS, test, soldierForm, node);
                         currentNode.setExpanded(true);
-                        GeneralItem.getNbSoldier(currentNode);
                     }else if (event.getClickCount()==2) {
                         setModifyGeneralForm(currentNode);
                     }
@@ -206,10 +206,11 @@ public class ArmyController implements Initializable {
         }
         formPane.getChildren().add(generalForm);
         for(GeneralItem element: generalList) {
-            txtgeneralName.setText(element.getName());
             if (item.getValue().equals(element.toString())) {
+                txtgeneralName.setText(element.getName());
+                element.setNbSoldiers(item.getChildren().size());
                 btnaddg.setOnMouseClicked(e->{
-                    lnlUnderCommandS.setText(String.valueOf(element.getNbSoldier(item)));
+                    lnlUnderCommandS.setText(String.valueOf(element.getNbSoldiers()));
                     element.setName(txtgeneralName.getText());
                     item.setValue(element.toString());
                     formPane.getChildren().remove(generalForm);
@@ -221,13 +222,14 @@ public class ArmyController implements Initializable {
     public void setModifySoldierForm(TreeItem item){
         clearForms();
         if(!formPane.getChildren().isEmpty()) {
-            formPane.getChildren().removeAll(generalForm, generalForm);
+            formPane.getChildren().removeAll(soldierForm, generalForm);
         }
         formPane.getChildren().add(soldierForm);
         for(SoldierItem element: soldierList) {
-            txtsoldierName.setText(element.getName());
-            txtvitalPoint.setText(element.getPV());
             if (item.getValue().equals(element.toString())) {
+                txtsoldierName.setText(element.getName());
+                txtvitalPoint.setText(element.getPV());
+                sprank.setText(element.getRank());
                 btnadds.setOnMouseClicked(e->{
                     element.setName(txtsoldierName.getText());
                     element.setPV(txtvitalPoint.getText());
@@ -246,7 +248,7 @@ public class ArmyController implements Initializable {
         txtvitalPoint.clear();
         sprank.disarm();
     }
-
+    
 
 
 }
